@@ -15,10 +15,10 @@ function importPlugin(nameString) {
   if (/^\//.test(nameString)) {
     // absolute import
     const pluginPath = nameString.slice(1);
-    plugin = require(__dirname, '../..', pluginPath);
+    plugin = require(path.resolve(__dirname, '../..', pluginPath));
   } else if (/^(\.\/|\.\.\/)/.test(nameString)) {
     // relative import
-    plugin = require(__dirname, '../..', nameString);
+    plugin = require(path.resolve(__dirname, '../..', nameString));
   } else if (/^(babel-plugin-|@\w+\/babel-plugin-)/.test(nameString)) {
     // full-name or with scope
     plugin = require(nameString);
